@@ -1,2 +1,2 @@
 # Solid_Principles
-Stydy on solid principles for development
+Study on solid principles for development
