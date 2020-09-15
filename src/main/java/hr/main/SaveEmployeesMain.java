@@ -4,8 +4,12 @@ import hr.logging.ConsoleLogger;
 import hr.persistence.EmployeeFileSerializer;
 import hr.persistence.EmployeeRepository;
 import hr.personnel.Employee;
+import hr.taxes.TaxCalculator;
+import hr.taxes.TaxCalculatorFactory;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class SaveEmployeesMain {
     public static void main(String[] args) {
@@ -15,14 +19,20 @@ public class SaveEmployeesMain {
         EmployeeRepository repository = new EmployeeRepository(employeeFileSerializer);
         List<Employee> employees = repository.findAll();
 
-        // Save all
+        //calculate taxes
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+
+        double totalTaxes = 0;
         for (Employee e : employees) {
-            try {
-                repository.save(e);
-                consoleLogger.writeInfo("Saved employee :" + e.toString());
-            } catch (Exception ex) {
-                consoleLogger.writeError("Error saving employee :", ex);
-            }
+            TaxCalculator taxCalculator = TaxCalculatorFactory.create(e);
+            double tax = taxCalculator.calculate(e);
+            totalTaxes += tax;
+
+            String formattedTax= currencyFormatter.format(tax);
+            consoleLogger.writeInfo(e.getFullName()+" taxes : "+formattedTax);
         }
+
+        consoleLogger.writeInfo("Total taxes : "+totalTaxes);
     }
 }
