@@ -38,10 +38,10 @@ public class EmployeeRepository {
     }
 
     public void save(Employee employee) throws IOException {
-            String serializedString =employeeFileSerializer.serialize(employee);
+        String serializedString = employeeFileSerializer.serialize(employee);
 
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ", "_") + ".rec");
-            Files.write(path, serializedString.getBytes());
+        Path path = Paths.get(employee.getFullName()
+                .replace(" ", "_") + ".rec");
+        Files.write(path, serializedString.getBytes());
     }
 }

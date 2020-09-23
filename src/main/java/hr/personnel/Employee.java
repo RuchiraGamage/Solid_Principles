@@ -19,7 +19,10 @@ public abstract class Employee {
     private int monthlyIncome;
     private int nbHoursPerWeek;
 
-    public Employee(String fullName, int monthlyIncome){
+    public Employee() {
+    }
+
+    public Employee(String fullName, int monthlyIncome) {
         setMonthlyIncome(monthlyIncome);
 
         String[] names = fullName.split(" ");
@@ -45,7 +48,7 @@ public abstract class Employee {
     }
 
     public void setMonthlyIncome(int monthlyIncome) {
-        if(monthlyIncome < 0){
+        if (monthlyIncome < 0) {
             throw new IllegalArgumentException("Income must be positive");
         }
 
@@ -57,14 +60,14 @@ public abstract class Employee {
     }
 
     public void setNbHoursPerWeek(int nbHoursPerWeek) {
-        if(nbHoursPerWeek <= 0){
+        if (nbHoursPerWeek <= 0) {
             throw new IllegalArgumentException("Income must be positive");
         }
 
         this.nbHoursPerWeek = nbHoursPerWeek;
     }
 
-    public String getFullName(){
+    public String getFullName() {
         return this.firstName + " " + this.lastName;
     }
 
