@@ -1,4 +1,4 @@
-package inheritancePlusEnums;
+package inheritance;
 
 /**
  * Created by Ruchira on 10/13/2020.
@@ -29,7 +29,11 @@ public class EnumTest {
             default:
                 //do something
         }
+    }
 
+    public void findWhoIsInCharge(FlightCrew member1, FlightCrew member2) {
+        FlightCrew boss = member1.compareTo(member2) > 0 ? member1 : member2;
+        System.out.println("the person in charge is : " + boss);
     }
 }
 
