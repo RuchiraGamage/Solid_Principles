@@ -31,8 +31,8 @@ public class FlightSearchService {
 
         return flightStore.getAllFlights().stream()
                 .filter(flight -> flight.getFromDestination().equals(from))
-                .filter(flight -> flight.getToDestination().equals(to))
-                .filter(flight -> flight.getNumOfPassengers() >= noOfPassengers)
+//                .filter(flight -> flight.getToDestination().equals(to))
+//                .filter(flight -> flight.getNumOfPassengers() >= noOfPassengers)
                 .collect(toList());
     }
 }
